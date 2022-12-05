@@ -68,7 +68,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void OnPickUpCollectible(int playerFlagCount)
+    public void OnFlagCollectible(int playerFlagCount)
     {
         gameView.SetCountText(playerFlagCount);
         // Check if our 'count' is equal to or exceeded our maxCollectibles count
