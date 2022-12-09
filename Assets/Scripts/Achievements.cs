@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Achievements : MonoBehaviour
 {
     public AchievementUI AchievementUI;
+    public GameView GameView;
     private bool CaptureAllFlags = false;
 
     private bool GotUnderThreeSeconds = false;
@@ -14,27 +17,43 @@ public class Achievements : MonoBehaviour
     private bool GotUnderSevenSeconds = false;
 
     private bool GotFailure = false;
+
+    //public Text countText;
+
+    //public Text timerText;
     // Start is called before the first frame update
     void Start()
     {
         AchievementUI = GetComponent<AchievementUI>();
     }
-    
-    public void unlockAllAchievements()
+
+    private void FixedUpdate()
     {
-        AchievementUI.changeCheckTo(1, CheckTimerSevenAchievement());
-        AchievementUI.changeCheckTo(2, CheckAllFlagsAchievement());
-        AchievementUI.changeCheckTo(3, CheckFailureAchievement());
+        while (!CaptureAllFlags)
+            checkAllFlags();
+    }
+
+    public void unlockAllAchievements() // trigger this once plesae thanks thoawepawe
+    {
+        AchievementUI.changeCheckTo(1, CheckAllFlagsAchievement());
+        //AchievementUI.changeCheckTo(2, CheckTimerSevenAchievement());
+        //AchievementUI.changeCheckTo(3, CheckFailureAchievement());
     }
 
     public void checkTimerSeven()
     {
-        GotUnderSevenSeconds = true;
+        // if (GetComponent(timerText) > 7) 
+            GotUnderSevenSeconds = true;
     }
 
     public void checkAllFlags()
     {
-        CaptureAllFlags = true;
+        if (GameView.countInt >= 3)
+        {
+            CaptureAllFlags = true;
+            print("we got this homie");
+        }
+        unlockAllAchievements();
     }
 
     public void checkFailure()

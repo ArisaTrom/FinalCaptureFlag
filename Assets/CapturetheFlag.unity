@@ -215,12 +215,12 @@ GameObject:
   - component: {fileID: 21697671}
   - component: {fileID: 21697670}
   m_Layer: 5
-  m_Name: 'Achievement '
+  m_Name: Achievement 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &21697669
 RectTransform:
   m_ObjectHideFlags: 0
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b43e09ce5045847818469ab8dc1897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  achievementCheck1: {fileID: 0}
+  achievementCheck1: {fileID: 21697668}
   achievementCheck2: {fileID: 0}
   achievementCheck3: {fileID: 0}
   isAchievement1Unlocked: 0
@@ -406,6 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AchievementUI: {fileID: 281283438}
+  GameView: {fileID: 1152245835}
 --- !u!4 &281283440
 Transform:
   m_ObjectHideFlags: 0
@@ -1429,6 +1430,7 @@ MonoBehaviour:
   countText: {fileID: 1082440680}
   resultText: {fileID: 590087609}
   timerText: {fileID: 17045453}
+  countInt: 0
 --- !u!4 &1152245836
 Transform:
   m_ObjectHideFlags: 0

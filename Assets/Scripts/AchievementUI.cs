@@ -14,7 +14,7 @@ public class AchievementUI : MonoBehaviour
     public bool isAchievement2Unlocked;
     public bool isAchievement3Unlocked;
     // Start is called before the first frame update
-    void Start()
+    void FixedUpdate()
     {
         UpdateChecks();
     }
@@ -37,8 +37,19 @@ public class AchievementUI : MonoBehaviour
 
     private void UpdateChecks()
     {
-        achievementCheck1.SetActive(isAchievement1Unlocked);
-        achievementCheck2.SetActive(isAchievement2Unlocked);
-        achievementCheck3.SetActive(isAchievement3Unlocked);
+        if (isAchievement1Unlocked)
+        {
+            achievementCheck1.SetActive(isAchievement1Unlocked);
+            StartCoroutine(Sleep(achievementCheck1));
+        }
+
+        //achievementCheck2.SetActive(isAchievement2Unlocked);
+        //achievementCheck3.SetActive(isAchievement3Unlocked);
+    }
+
+    IEnumerator Sleep(GameObject achievementTag)
+    {
+        yield return new WaitForSeconds(3f);
+        achievementTag.SetActive(false);
     }
 }
