@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
         gameView.countText.gameObject.SetActive(false);
         gameView.timerText.gameObject.SetActive(false);
 
-        doodoo.text = gameDictionary.displayAchievement(0);
+        doodoo.text = gameDictionary.displayAchievement(0); // win achie
         StartCoroutine(waitForSeconds());
         StartCoroutine(backwardsWaitForSeconds());
 
