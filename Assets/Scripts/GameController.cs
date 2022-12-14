@@ -14,13 +14,19 @@ public class GameController : MonoBehaviour
     };
     private GameView gameView;
     private GameStates gameState;
+    private Dictionary gameDictionary;
+    public CanvasGroup achievements;
     private int maxFlagCount;
     public SimpleTimer simpleTimer;
+    public Text doodoo;
+
+    private int playerFlag;
 
     private void Start()
     {
         simpleTimer = GetComponent<SimpleTimer>();
         gameView = GetComponentInChildren<GameView>();
+        gameDictionary = GetComponent<Dictionary>();
         gameState = GameStates.GamePlaying;
         maxFlagCount = GameObject.FindGameObjectsWithTag("Flag").Length;
     }
@@ -33,6 +39,30 @@ public class GameController : MonoBehaviour
         //Hide count and timer text
         gameView.countText.gameObject.SetActive(false);
         gameView.timerText.gameObject.SetActive(false);
+
+        doodoo.text = gameDictionary.displayAchievement(0);
+        StartCoroutine(waitForSeconds());
+        StartCoroutine(backwardsWaitForSeconds());
+
+    }
+
+    IEnumerator waitForSeconds()
+    {
+        for (float i = 0; i < 1; i += 0.01f)
+        {
+            yield return new WaitForSeconds(0.005f);
+            achievements.alpha = i;
+        }
+    }
+    
+    IEnumerator backwardsWaitForSeconds()
+    {
+        yield return new WaitForSeconds(1.5f);
+        for (float i = 1; i > 0; i -= 0.01f)
+        {
+            yield return new WaitForSeconds(0.0125f);
+            achievements.alpha = i;
+        }
     }
 
     private void OnGameLost()
@@ -43,6 +73,19 @@ public class GameController : MonoBehaviour
         //Hide count and timer text
         gameView.countText.gameObject.SetActive(false);
         gameView.timerText.gameObject.SetActive(false);
+
+        switch (playerFlag)
+        {
+            case 0:
+                doodoo.text = gameDictionary.displayAchievement(1);
+                break;
+            case 1:
+            case 2:
+                doodoo.text = gameDictionary.displayAchievement(2);
+                break;
+        }
+        StartCoroutine(waitForSeconds());
+        StartCoroutine(backwardsWaitForSeconds());
     }
 
     public void StateUpdate(GameStates newState)
@@ -71,6 +114,7 @@ public class GameController : MonoBehaviour
     public void OnFlagCollectible(int playerFlagCount)
     {
         gameView.SetCountText(playerFlagCount);
+        playerFlag = playerFlagCount;
         // Check if our 'count' is equal to or exceeded our maxCollectibles count
         if (playerFlagCount >= maxFlagCount) 
         {
