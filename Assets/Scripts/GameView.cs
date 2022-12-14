@@ -1,7 +1,16 @@
+/*
+ * Arisa Takenaka Trombley & Sam Lash
+ * 2375446 2366917
+ * trombley@chapman.edu slash@chapman.edu
+ * CPSC-245-01
+ * Final
+ * 
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 public class GameView : MonoBehaviour
 {

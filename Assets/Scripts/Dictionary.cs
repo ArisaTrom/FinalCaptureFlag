@@ -2,7 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+/*
+ * Arisa Takenaka Trombley & Sam Lash
+ * 2375446 2366917
+ * trombley@chapman.edu slash@chapman.edu
+ * CPSC-245-01
+ * Final
+ * 
+ */
 public class Dictionary : MonoBehaviour
 {
     // Start is called before the first frame update
